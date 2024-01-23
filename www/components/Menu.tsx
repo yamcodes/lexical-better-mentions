@@ -1,14 +1,14 @@
 import { cn } from "@/lib/utils";
 import {
-  BeautifulMentionsMenuItemProps,
-  BeautifulMentionsMenuProps,
-} from "lexical-beautiful-mentions";
+  BetterMentionsMenuItemProps,
+  BetterMentionsMenuProps,
+} from "lexical-better-mentions";
 import { forwardRef } from "react";
 
 /**
- * Menu component for the BeautifulMentionsPlugin.
+ * Menu component for the BetterMentionsPlugin.
  */
-export const Menu = forwardRef<any, BeautifulMentionsMenuProps>(
+export const Menu = forwardRef<any, BetterMentionsMenuProps>(
   ({ open, loading, ...other }, ref) => {
     if (loading) {
       return (
@@ -36,19 +36,18 @@ export const Menu = forwardRef<any, BeautifulMentionsMenuProps>(
 Menu.displayName = "Menu";
 
 /**
- * MenuItem component for the BeautifulMentionsPlugin.
+ * MenuItem component for the BetterMentionsPlugin.
  */
-export const MenuItem = forwardRef<
-  HTMLLIElement,
-  BeautifulMentionsMenuItemProps
->(({ selected, item, itemValue, ...props }, ref) => (
-  <li
-    ref={ref}
-    className={cn(
-      "relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none",
-      selected && "bg-accent text-accent-foreground",
-    )}
-    {...props}
-  />
-));
+export const MenuItem = forwardRef<HTMLLIElement, BetterMentionsMenuItemProps>(
+  ({ selected, item, itemValue, ...props }, ref) => (
+    <li
+      ref={ref}
+      className={cn(
+        "relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none",
+        selected && "bg-accent text-accent-foreground",
+      )}
+      {...props}
+    />
+  ),
+);
 MenuItem.displayName = "MenuItem";

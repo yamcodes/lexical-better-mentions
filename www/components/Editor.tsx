@@ -16,17 +16,17 @@ import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { $getRoot, EditorState } from "lexical";
 import {
-  BeautifulMentionsComboboxItem,
-  BeautifulMentionsItem,
-  BeautifulMentionsPlugin,
-  BeautifulMentionsPluginProps,
+  BetterMentionsComboboxItem,
+  BetterMentionsItem,
+  BetterMentionsPlugin,
+  BetterMentionsPluginProps,
   ZERO_WIDTH_CHARACTER,
   ZeroWidthPlugin,
-} from "lexical-beautiful-mentions";
+} from "lexical-better-mentions";
 import { useCallback, useMemo, useRef, useState } from "react";
 import "./Editor.css";
 
-const mentionItems: Record<string, BeautifulMentionsItem[]> = {
+const mentionItems: Record<string, BetterMentionsItem[]> = {
   "@": [
     "Anton",
     "Boris",
@@ -139,14 +139,14 @@ function Plugins() {
   }, []);
 
   const handleComboboxFocusChange = useCallback(
-    (item: BeautifulMentionsComboboxItem | null) => {
+    (item: BetterMentionsComboboxItem | null) => {
       setComboboxItemSelected(item !== null);
     },
     [],
   );
 
   const handleComboboxItemSelect = useCallback(
-    (item: BeautifulMentionsComboboxItem) => {
+    (item: BetterMentionsComboboxItem) => {
       if (item.itemType === "additional") {
         setMenuOrComboboxOpen(false);
       }
@@ -154,7 +154,7 @@ function Plugins() {
     [],
   );
 
-  const beautifulMentionsProps: BeautifulMentionsPluginProps = {
+  const betterMentionsProps: BetterMentionsPluginProps = {
     mentionEnclosure,
     allowSpaces,
     creatable,
@@ -227,7 +227,7 @@ function Plugins() {
           <AutoFocusPlugin defaultSelection={autoFocus} />
         )}
         <ZeroWidthPlugin textContent={ZERO_WIDTH_CHARACTER} />
-        <BeautifulMentionsPlugin {...beautifulMentionsProps} />
+        <BetterMentionsPlugin {...betterMentionsProps} />
       </div>
       <MentionsToolbarPlugin />
       <div className="hidden" data-testid="plaintext">

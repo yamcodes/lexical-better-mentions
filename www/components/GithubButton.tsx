@@ -17,7 +17,7 @@ export function GithubButton() {
     <Link
       target="_blank"
       rel="noreferrer"
-      href="https://github.com/sodenn/lexical-beautiful-mentions"
+      href="https://github.com/yamcodes/lexical-better-mentions"
       className={cn(buttonVariants({ variant: "outline" }), "w-10 px-0")}
     >
       <GitHubIcon className="h-4 w-4" />

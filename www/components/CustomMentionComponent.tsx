@@ -3,12 +3,12 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
-import { BeautifulMentionComponentProps } from "lexical-beautiful-mentions";
+import { BetterMentionComponentProps } from "lexical-better-mentions";
 import { forwardRef } from "react";
 
 const CustomMentionComponent = forwardRef<
   HTMLSpanElement,
-  BeautifulMentionComponentProps<{ id: string }>
+  BetterMentionComponentProps<{ id: string }>
 >(({ trigger, value, data, children, ...other }, ref) => {
   return (
     <Tooltip>

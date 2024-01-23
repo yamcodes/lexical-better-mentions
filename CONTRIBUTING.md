@@ -1,5 +1,6 @@
-# Contributing to lexical-beautiful-mentions
-Here is a quick guide to doing code contributions to lexical-beautiful-mentions.
+# Contributing to lexical-better-mentions
+
+Here is a quick guide to doing code contributions to lexical-better-mentions.
 
 ## Pull Requests
 
@@ -23,5 +24,5 @@ Here is a quick guide to doing code contributions to lexical-beautiful-mentions.
    ```
 7. If you've changed APIs, update the documentation.
 8. Push your branch.
-9. Submit a pull request to the upstream [lexical-beautiful-mentions repository](https://github.com/sodenn/lexical-beautiful-mentions/pulls).<br>
-> Maintainers will merge the pull request by squashing all commits and editing the commit message if necessary.
+9. Submit a pull request to the upstream [lexical-better-mentions repository](https://github.com/yamcodes/lexical-better-mentions/pulls).<br>
+   > Maintainers will merge the pull request by squashing all commits and editing the commit message if necessary.

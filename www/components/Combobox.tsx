@@ -1,14 +1,14 @@
 import { cn } from "@/lib/utils";
 import {
-  BeautifulMentionsComboboxItemProps,
-  BeautifulMentionsComboboxProps,
-} from "lexical-beautiful-mentions";
+  BetterMentionsComboboxItemProps,
+  BetterMentionsComboboxProps,
+} from "lexical-better-mentions";
 import { forwardRef } from "react";
 
 /**
- * Combobox component for the BeautifulMentionsPlugin.
+ * Combobox component for the BetterMentionsPlugin.
  */
-export const Combobox = forwardRef<any, BeautifulMentionsComboboxProps>(
+export const Combobox = forwardRef<any, BetterMentionsComboboxProps>(
   ({ optionType, loading, ...other }, ref) => {
     if (loading) {
       return (
@@ -36,11 +36,11 @@ export const Combobox = forwardRef<any, BeautifulMentionsComboboxProps>(
 Combobox.displayName = "Combobox";
 
 /**
- * ComboboxItem component for the BeautifulMentionsPlugin.
+ * ComboboxItem component for the BetterMentionsPlugin.
  */
 export const ComboboxItem = forwardRef<
   HTMLLIElement,
-  BeautifulMentionsComboboxItemProps
+  BetterMentionsComboboxItemProps
 >(({ selected, item, ...props }, ref) => (
   <>
     {item.data.dividerTop && (

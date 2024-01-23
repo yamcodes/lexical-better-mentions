@@ -21,27 +21,27 @@ import {
 } from "lexical";
 import { ElementType, useCallback, useEffect, useMemo, useRef } from "react";
 import {
-  BeautifulMentionsItemData,
-  BeautifulMentionComponentProps as CustomBeautifulMentionComponentProps,
-} from "./BeautifulMentionsPluginProps";
-import { $isBeautifulMentionNode } from "./MentionNode";
+  BetterMentionsItemData,
+  BetterMentionComponentProps as CustomBetterMentionComponentProps,
+} from "./BetterMentionsPluginProps";
+import { $isBetterMentionNode } from "./MentionNode";
 import { IS_IOS } from "./environment";
 import { getNextSibling, getPreviousSibling } from "./mention-utils";
-import { BeautifulMentionsThemeValues } from "./theme";
+import { BetterMentionsThemeValues } from "./theme";
 
-interface BeautifulMentionComponentProps {
+interface BetterMentionComponentProps {
   nodeKey: NodeKey;
   trigger: string;
   value: string;
-  data?: { [p: string]: BeautifulMentionsItemData };
-  component?: ElementType<CustomBeautifulMentionComponentProps> | null;
+  data?: { [p: string]: BetterMentionsItemData };
+  component?: ElementType<CustomBetterMentionComponentProps> | null;
   className?: string;
   classNameFocused?: string;
-  themeValues?: BeautifulMentionsThemeValues;
+  themeValues?: BetterMentionsThemeValues;
 }
 
-export default function BeautifulMentionComponent(
-  props: BeautifulMentionComponentProps,
+export default function BetterMentionComponent(
+  props: BetterMentionComponentProps,
 ) {
   const {
     value,
@@ -75,7 +75,7 @@ export default function BeautifulMentionComponent(
       if (isSelected && $isNodeSelection($getSelection())) {
         payload.preventDefault();
         const node = $getNodeByKey(nodeKey);
-        if ($isBeautifulMentionNode(node)) {
+        if ($isBetterMentionNode(node)) {
           node.remove();
         }
       }
@@ -237,7 +237,7 @@ export default function BeautifulMentionComponent(
         value={value}
         data={data}
         className={finalClasses}
-        data-beautiful-mention={mention}
+        data-better-mention={mention}
       >
         {mention}
       </Component>
@@ -253,7 +253,7 @@ export default function BeautifulMentionComponent(
             ? themeValues.containerFocused
             : themeValues.container
         }
-        data-beautiful-mention={mention}
+        data-better-mention={mention}
       >
         <span className={themeValues.trigger}>{trigger}</span>
         <span className={themeValues.value}>{value}</span>
@@ -262,7 +262,7 @@ export default function BeautifulMentionComponent(
   }
 
   return (
-    <span ref={ref} className={finalClasses} data-beautiful-mention={mention}>
+    <span ref={ref} className={finalClasses} data-better-mention={mention}>
       {mention}
     </span>
   );

@@ -1,5 +1,5 @@
 {
-  "name": "lexical-beautiful-mentions",
+  "name": "lexical-better-mentions",
   "version": "0.1.29",
   "license": "MIT",
   "description": "A mentions plugin for the lexical text editor.",
@@ -9,8 +9,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sodenn/lexical-beautiful-mentions.git",
-    "directory": "packages/lexical-beautiful-mentions"
+    "url": "https://github.com/yamcodes/lexical-better-mentions.git",
+    "directory": "packages/lexical-better-mentions"
   },
   "keywords": [
     "mentions",
@@ -20,10 +20,10 @@
     "lexical",
     "plugin"
   ],
-  "homepage": "https://github.com/sodenn/lexical-beautiful-mentions",
+  "homepage": "https://github.com/yamcodes/lexical-better-mentions",
   "author": {
-    "name": "sodenn",
-    "email": "mail@sodenn.dev"
+    "name": "yamcodes",
+    "email": "mail@yamcodes.dev"
   },
   "scripts": {
     "build": "run-s clean build:all copy",

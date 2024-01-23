@@ -1,17 +1,17 @@
-# lexical-beautiful-mentions
+# lexical-better-mentions
 
 ## 0.1.29
 
 ### Patch Changes
 
-- b2e5c65: fix(createBeautifulMentionNode): add missing return type for custom mention node
+- b2e5c65: fix(createBetterMentionNode): add missing return type for custom mention node
 - d03f567: fix($convertToMentionNodes): triggers followed by text in the middle of a word should be recognized as mentions
 
 ## 0.1.28
 
 ### Patch Changes
 
-- 413fcbf: fix(): set missing return type of BeautifulMentionNode methods
+- 413fcbf: fix(): set missing return type of BetterMentionNode methods
 
 ## 0.1.27
 
@@ -42,7 +42,7 @@
 
 ### Patch Changes
 
-- cc96095: fix(BeautifulMentionNode + ZeroWidthNode): fix HTML/JSON node serialization & deserialization
+- cc96095: fix(BetterMentionNode + ZeroWidthNode): fix HTML/JSON node serialization & deserialization
 
 ## 0.1.22
 
@@ -56,13 +56,13 @@
 
 ### Patch Changes
 
-- f60adca: fix(createBeautifulMentionNode): prevent re-creating the BeautifulMentionNode class on every call
+- f60adca: fix(createBetterMentionNode): prevent re-creating the BetterMentionNode class on every call
 
 ## 0.1.20
 
 ### Patch Changes
 
-- 662e895: feat(): add null type to BeautifulMentionsItem data fields
+- 662e895: feat(): add null type to BetterMentionsItem data fields
 
 ## 0.1.19
 
@@ -75,7 +75,7 @@
 
 ### Patch Changes
 
-- 50d0ae0: feat(BeautifulMentionComponentProps): data prop with generic type
+- 50d0ae0: feat(BetterMentionComponentProps): data prop with generic type
 - 7e14758: feat(): drop check for slash
 
 ## 0.1.17
@@ -108,12 +108,12 @@
 - 2ff69af: feat(Combobox): allow to add additional combobox items
 - 4ce0123: - refactor(): remove `open` prop from Menu component
 
-  - refactor(): called `onComboboxFocusChange` with a `BeautifulMentionsComboboxItem` instead of a string
+  - refactor(): called `onComboboxFocusChange` with a `BetterMentionsComboboxItem` instead of a string
 
   **BREAKING**
 
-  - `open` prop has been removed from `BeautifulMentionsMenuProps`
-  - `onComboboxFocusChange` now receives a `BeautifulMentionsComboboxItem` instead of a string
+  - `open` prop has been removed from `BetterMentionsMenuProps`
+  - `onComboboxFocusChange` now receives a `BetterMentionsComboboxItem` instead of a string
 
 - 2ff69af: feat(Combobox): control the combobox open state
 
@@ -133,7 +133,7 @@
   **BREAKING**:
 
   - Renamed `openMentionsMenu` to `openMentionMenu`
-  - Removed the `isMentionsMenuOpen` and `isTriggersMenuOpen` functions from the `useBeautifulMentions` hook in favor of the new `onMenuOpen`, `onMenuClose`, `onComboboxOpen`, `onComboboxClose` and `onComboboxItemSelect` props of the `BeautifulMentionsPlugin` component. This leads to a more reliable information about the state of the menu / combobox, since it is no longer determined by DOM elements.
+  - Removed the `isMentionsMenuOpen` and `isTriggersMenuOpen` functions from the `useBetterMentions` hook in favor of the new `onMenuOpen`, `onMenuClose`, `onComboboxOpen`, `onComboboxClose` and `onComboboxItemSelect` props of the `BetterMentionsPlugin` component. This leads to a more reliable information about the state of the menu / combobox, since it is no longer determined by DOM elements.
 
 - ae9dd61: feat(): improve mention selection for mobile usage
 
@@ -202,7 +202,7 @@
 
 ### Patch Changes
 
-- bb9d4c7: feat(): add label to BeautifulMentionsMenuItemProps
+- bb9d4c7: feat(): add label to BetterMentionsMenuItemProps
 
 ## 0.1.2
 
@@ -234,7 +234,7 @@
 
 ### Patch Changes
 
-- e13cd0a: fix(useBeautifulMentions): hook function should return `true` when the mention menu is open
+- e13cd0a: fix(useBetterMentions): hook function should return `true` when the mention menu is open
 
 ## 0.0.3
 

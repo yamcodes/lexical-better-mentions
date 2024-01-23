@@ -4,10 +4,10 @@ import { InitialConfigType } from "@lexical/react/LexicalComposer";
 import { $createParagraphNode, $getRoot } from "lexical";
 import {
   $convertToMentionNodes,
-  BeautifulMentionNode,
+  BetterMentionNode,
   ZeroWidthNode,
-  createBeautifulMentionNode,
-} from "lexical-beautiful-mentions";
+  createBetterMentionNode,
+} from "lexical-better-mentions";
 
 export const defaultInitialValue =
   "Hey @John, the task is #urgent and due:tomorrow";
@@ -23,7 +23,7 @@ function setEditorState(initialValue: string, triggers: string[]) {
   };
 }
 
-const [CustomBeautifulMentionNode, replacement] = createBeautifulMentionNode(
+const [CustomBetterMentionNode, replacement] = createBetterMentionNode(
   CustomMentionComponent,
 );
 
@@ -40,8 +40,8 @@ const editorConfig = (
   editorState: setEditorState(initialValue, triggers),
   nodes: [
     ...(customMentionNode
-      ? [CustomBeautifulMentionNode, replacement]
-      : [BeautifulMentionNode]),
+      ? [CustomBetterMentionNode, replacement]
+      : [BetterMentionNode]),
     ZeroWidthNode,
   ],
 });

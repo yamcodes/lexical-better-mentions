@@ -1,4 +1,4 @@
-export interface BeautifulMentionsThemeValues {
+export interface BetterMentionsThemeValues {
   trigger?: string;
   value?: string;
   container?: string;
@@ -6,16 +6,16 @@ export interface BeautifulMentionsThemeValues {
 }
 
 /**
- * The theme configuration for BeautifulMentions. Rules:
+ * The theme configuration for BetterMentions. Rules:
  * - The keys are regular expressions that match the triggers.
  * - The values are strings with class names or
- *   {@link BeautifulMentionsThemeValues} objects.
+ *   {@link BetterMentionsThemeValues} objects.
  * - Append `Focused` to the key to apply styles when the trigger
  *   is focused. Limitation: the value must be a string with class names.
  * - If you need to apply different styles to trigger and value,
- *   use an {@link BeautifulMentionsThemeValues} object instead of a string.
+ *   use an {@link BetterMentionsThemeValues} object instead of a string.
  */
-export type BeautifulMentionsTheme = Record<
+export type BetterMentionsTheme = Record<
   string,
-  string | BeautifulMentionsThemeValues
+  string | BetterMentionsThemeValues
 >;

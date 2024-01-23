@@ -12,7 +12,7 @@ import {
   RootNode,
   TextNode,
 } from "lexical";
-import { BeautifulMentionsPluginProps } from "./BeautifulMentionsPluginProps";
+import { BetterMentionsPluginProps } from "./BetterMentionsPluginProps";
 import { $isZeroWidthNode } from "./ZeroWidthNode";
 
 interface SelectionInfoBase {
@@ -168,7 +168,7 @@ export function getTextContent(node: LexicalNode) {
 }
 
 export function getCreatableProp(
-  creatable: BeautifulMentionsPluginProps["creatable"],
+  creatable: BetterMentionsPluginProps["creatable"],
   trigger: string | null,
 ) {
   if (typeof creatable === "string" || typeof creatable === "boolean") {
@@ -184,7 +184,7 @@ export function getCreatableProp(
 }
 
 export function getMenuItemLimitProp(
-  menuItemLimit: BeautifulMentionsPluginProps["menuItemLimit"],
+  menuItemLimit: BetterMentionsPluginProps["menuItemLimit"],
   trigger: string | null,
 ) {
   if (typeof menuItemLimit === "number" || menuItemLimit === false) {

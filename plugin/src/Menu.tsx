@@ -1,7 +1,7 @@
 import { MenuTextMatch } from "@lexical/react/LexicalTypeaheadMenuPlugin";
 import { $getSelection, $isRangeSelection, TextNode } from "lexical";
 import { MutableRefObject } from "react";
-import { BeautifulMentionsItemData } from "./BeautifulMentionsPluginProps";
+import { BetterMentionsItemData } from "./BetterMentionsPluginProps";
 import { getTextContent } from "./mention-utils";
 
 export class MenuOption {
@@ -28,7 +28,7 @@ export class MenuOption {
     /**
      * Additional data belonging to the option. For example: `{ id: 1 }`.
      */
-    public readonly data?: { [key: string]: BeautifulMentionsItemData },
+    public readonly data?: { [key: string]: BetterMentionsItemData },
   ) {
     this.key = !data ? value : JSON.stringify({ ...data, value });
     this.displayValue = displayValue ?? value;

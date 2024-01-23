@@ -1,39 +1,36 @@
 import { CreateEditorArgs, createEditor } from "lexical";
 import { describe, expect, test } from "vitest";
-import { BeautifulMentionsItemData } from "./BeautifulMentionsPluginProps";
-import {
-  $createBeautifulMentionNode,
-  BeautifulMentionNode,
-} from "./MentionNode";
+import { BetterMentionsItemData } from "./BetterMentionsPluginProps";
+import { $createBetterMentionNode, BetterMentionNode } from "./MentionNode";
 
 const editorConfig: CreateEditorArgs = {
-  nodes: [BeautifulMentionNode],
+  nodes: [BetterMentionNode],
 };
 
 export function exportJSON(
   trigger: string,
   value: string,
-  data?: { [p: string]: BeautifulMentionsItemData },
+  data?: { [p: string]: BetterMentionsItemData },
 ) {
-  let node: BeautifulMentionNode | undefined = undefined;
+  let node: BetterMentionNode | undefined = undefined;
   const editor = createEditor(editorConfig);
   editor.update(() => {
-    node = $createBeautifulMentionNode(trigger, value, data);
+    node = $createBetterMentionNode(trigger, value, data);
   });
   if (!node) {
     throw new Error("Node is undefined");
   }
-  return (node as BeautifulMentionNode).exportJSON();
+  return (node as BetterMentionNode).exportJSON();
 }
 
-describe("BeautifulMentionNode", () => {
+describe("BetterMentionNode", () => {
   test("should include a data prop when exporting to JSON and data is provided when creating the node", () => {
     const node = exportJSON("@", "Jane", {
       email: "jane@example.com",
     });
     expect(node).toStrictEqual({
       trigger: "@",
-      type: "beautifulMention",
+      type: "betterMention",
       value: "Jane",
       data: {
         email: "jane@example.com",
@@ -46,7 +43,7 @@ describe("BeautifulMentionNode", () => {
     const node = exportJSON("@", "Jane");
     expect(node).toStrictEqual({
       trigger: "@",
-      type: "beautifulMention",
+      type: "betterMention",
       value: "Jane",
       version: 1,
     });

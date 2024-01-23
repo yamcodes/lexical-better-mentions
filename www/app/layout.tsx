@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "lexical-beautiful-mentions",
+  title: "lexical-better-mentions",
   description: "A mentions plugin for the lexical editor.",
 };
 

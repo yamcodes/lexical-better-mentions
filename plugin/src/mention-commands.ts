@@ -15,10 +15,7 @@ import {
   getPreviousSibling,
   getTextContent,
 } from "./mention-utils";
-import {
-  $createBeautifulMentionNode,
-  BeautifulMentionNode,
-} from "./MentionNode";
+import { $createBetterMentionNode, BetterMentionNode } from "./MentionNode";
 
 export interface InsertMention {
   /**
@@ -144,7 +141,7 @@ function $insertMentionOrTrigger(
 
   // Insert a mention node or a text node with the trigger to open the mention menu.
   const mentionNode = value
-    ? $createBeautifulMentionNode(trigger, value)
+    ? $createBetterMentionNode(trigger, value)
     : $createTextNode(trigger);
 
   // Insert a mention with a leading space if the node at the cursor is not a text node.
@@ -187,7 +184,7 @@ export function $removeMention(trigger: string, value?: string, focus = true) {
   let removed = false;
   let prev: LexicalNode | null = null;
   let next: LexicalNode | null = null;
-  const mentions = $nodesOfType(BeautifulMentionNode);
+  const mentions = $nodesOfType(BetterMentionNode);
   for (const mention of mentions) {
     const sameTrigger = mention.getTrigger() === trigger;
     const sameValue = mention.getValue() === value;
@@ -227,8 +224,8 @@ export function $renameMention(
   value?: string,
   focus = true,
 ) {
-  const mentions = $nodesOfType(BeautifulMentionNode);
-  let renamedMention: BeautifulMentionNode | null = null;
+  const mentions = $nodesOfType(BetterMentionNode);
+  let renamedMention: BetterMentionNode | null = null;
   for (const mention of mentions) {
     const sameTrigger = mention.getTrigger() === trigger;
     const sameValue = mention.getValue() === value;

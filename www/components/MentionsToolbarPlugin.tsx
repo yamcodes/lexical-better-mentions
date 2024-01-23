@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/Card";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Separator } from "@/components/ui/Separator";
 import { CheckboxProps } from "@radix-ui/react-checkbox";
-import { useBeautifulMentions } from "lexical-beautiful-mentions";
+import { useBetterMentions } from "lexical-better-mentions";
 import { useCallback, useId } from "react";
 
 function getRandomItem<T>(array: T[]): T {
@@ -51,7 +51,7 @@ export function MentionsToolbarPlugin() {
     removeMentions,
     insertMention,
     getMentions,
-  } = useBeautifulMentions();
+  } = useBetterMentions();
   const {
     asynchronous,
     combobox,

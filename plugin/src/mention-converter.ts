@@ -1,5 +1,5 @@
 import { $createTextNode, LexicalNode } from "lexical";
-import { $createBeautifulMentionNode } from "./MentionNode";
+import { $createBetterMentionNode } from "./MentionNode";
 import {
   DEFAULT_PUNCTUATION,
   LENGTH_LIMIT,
@@ -106,7 +106,7 @@ export function $convertToMentionNodes(
     if (entry.type === "text") {
       nodes.push($createTextNode(entry.value));
     } else {
-      nodes.push($createBeautifulMentionNode(entry.trigger, entry.value));
+      nodes.push($createBetterMentionNode(entry.trigger, entry.value));
     }
   }
   return nodes;

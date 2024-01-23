@@ -15,59 +15,54 @@ import {
 } from "lexical";
 import React, { ElementType } from "react";
 import {
-  BeautifulMentionComponentProps,
-  BeautifulMentionsItemData,
-} from "./BeautifulMentionsPluginProps";
+  BetterMentionComponentProps,
+  BetterMentionsItemData,
+} from "./BetterMentionsPluginProps";
 import MentionComponent from "./MentionComponent";
-import { BeautifulMentionsTheme } from "./theme";
+import { BetterMentionsTheme } from "./theme";
 
-export type SerializedBeautifulMentionNode = Spread<
+export type SerializedBetterMentionNode = Spread<
   {
     trigger: string;
     value: string;
-    data?: { [p: string]: BeautifulMentionsItemData };
+    data?: { [p: string]: BetterMentionsItemData };
   },
   SerializedLexicalNode
 >;
 
 function convertElement(domNode: HTMLElement): DOMConversionOutput | null {
-  const trigger = domNode.getAttribute(
-    "data-lexical-beautiful-mention-trigger",
-  );
-  const value = domNode.getAttribute("data-lexical-beautiful-mention-value");
-  let data: { [p: string]: BeautifulMentionsItemData } | undefined = undefined;
-  const dataStr = domNode.getAttribute("data-lexical-beautiful-mention-data");
+  const trigger = domNode.getAttribute("data-lexical-better-mention-trigger");
+  const value = domNode.getAttribute("data-lexical-better-mention-value");
+  let data: { [p: string]: BetterMentionsItemData } | undefined = undefined;
+  const dataStr = domNode.getAttribute("data-lexical-better-mention-data");
   if (dataStr) {
     try {
       data = JSON.parse(dataStr);
     } catch (e) {
-      console.warn(
-        "Failed to parse data attribute of beautiful mention node",
-        e,
-      );
+      console.warn("Failed to parse data attribute of better mention node", e);
     }
   }
   if (trigger != null && value !== null) {
-    const node = $createBeautifulMentionNode(trigger, value, data);
+    const node = $createBetterMentionNode(trigger, value, data);
     return { node };
   }
   return null;
 }
 
 /**
- * This node is used to represent a mention used in the BeautifulMentionPlugin.
+ * This node is used to represent a mention used in the BetterMentionPlugin.
  */
-export class BeautifulMentionNode extends DecoratorNode<React.JSX.Element> {
+export class BetterMentionNode extends DecoratorNode<React.JSX.Element> {
   __trigger: string;
   __value: string;
-  __data?: { [p: string]: BeautifulMentionsItemData };
+  __data?: { [p: string]: BetterMentionsItemData };
 
   static getType(): string {
-    return "beautifulMention";
+    return "betterMention";
   }
 
-  static clone(node: BeautifulMentionNode): BeautifulMentionNode {
-    return new BeautifulMentionNode(
+  static clone(node: BetterMentionNode): BetterMentionNode {
+    return new BetterMentionNode(
       node.__trigger,
       node.__value,
       node.__data,
@@ -76,9 +71,9 @@ export class BeautifulMentionNode extends DecoratorNode<React.JSX.Element> {
   }
 
   static importJSON(
-    serializedNode: SerializedBeautifulMentionNode,
-  ): BeautifulMentionNode {
-    return $createBeautifulMentionNode(
+    serializedNode: SerializedBetterMentionNode,
+  ): BetterMentionNode {
+    return $createBetterMentionNode(
       serializedNode.trigger,
       serializedNode.value,
       serializedNode.data,
@@ -87,15 +82,12 @@ export class BeautifulMentionNode extends DecoratorNode<React.JSX.Element> {
 
   exportDOM(): DOMExportOutput {
     const element = document.createElement("span");
-    element.setAttribute("data-lexical-beautiful-mention", "true");
-    element.setAttribute(
-      "data-lexical-beautiful-mention-trigger",
-      this.__trigger,
-    );
-    element.setAttribute("data-lexical-beautiful-mention-value", this.__value);
+    element.setAttribute("data-lexical-better-mention", "true");
+    element.setAttribute("data-lexical-better-mention-trigger", this.__trigger);
+    element.setAttribute("data-lexical-better-mention-value", this.__value);
     if (this.__data) {
       element.setAttribute(
-        "data-lexical-beautiful-mention-data",
+        "data-lexical-better-mention-data",
         JSON.stringify(this.__data),
       );
     }
@@ -106,7 +98,7 @@ export class BeautifulMentionNode extends DecoratorNode<React.JSX.Element> {
   static importDOM(): DOMConversionMap | null {
     return {
       span: (domNode: HTMLElement) => {
-        if (!domNode.hasAttribute("data-lexical-beautiful-mention")) {
+        if (!domNode.hasAttribute("data-lexical-better-mention")) {
           return null;
         }
         return {
@@ -120,7 +112,7 @@ export class BeautifulMentionNode extends DecoratorNode<React.JSX.Element> {
   constructor(
     trigger: string,
     value: string,
-    data?: { [p: string]: BeautifulMentionsItemData },
+    data?: { [p: string]: BetterMentionsItemData },
     key?: NodeKey,
   ) {
     super(key);
@@ -129,13 +121,13 @@ export class BeautifulMentionNode extends DecoratorNode<React.JSX.Element> {
     this.__data = data;
   }
 
-  exportJSON(): SerializedBeautifulMentionNode {
+  exportJSON(): SerializedBetterMentionNode {
     const data = this.__data;
     return {
       trigger: this.__trigger,
       value: this.__value,
       ...(data ? { data } : {}),
-      type: "beautifulMention",
+      type: "betterMention",
       version: 1,
     };
   }
@@ -167,22 +159,22 @@ export class BeautifulMentionNode extends DecoratorNode<React.JSX.Element> {
     self.__value = value;
   }
 
-  getData(): { [p: string]: BeautifulMentionsItemData } | undefined {
+  getData(): { [p: string]: BetterMentionsItemData } | undefined {
     const self = this.getLatest();
     return self.__data;
   }
 
-  setData(data?: { [p: string]: BeautifulMentionsItemData }) {
+  setData(data?: { [p: string]: BetterMentionsItemData }) {
     const self = this.getWritable();
     self.__data = data;
   }
 
-  component(): ElementType<BeautifulMentionComponentProps> | null {
+  component(): ElementType<BetterMentionComponentProps> | null {
     return null;
   }
 
   decorate(_editor: LexicalEditor, config: EditorConfig): JSX.Element {
-    const theme: BeautifulMentionsTheme = config.theme.beautifulMentions || {};
+    const theme: BetterMentionsTheme = config.theme.betterMentions || {};
     const entry = Object.entries(theme).find(([trigger]) =>
       new RegExp(trigger).test(this.__trigger),
     );
@@ -209,17 +201,17 @@ export class BeautifulMentionNode extends DecoratorNode<React.JSX.Element> {
   }
 }
 
-export function $createBeautifulMentionNode(
+export function $createBetterMentionNode(
   trigger: string,
   value: string,
-  data?: { [p: string]: BeautifulMentionsItemData },
-): BeautifulMentionNode {
-  const mentionNode = new BeautifulMentionNode(trigger, value, data);
+  data?: { [p: string]: BetterMentionsItemData },
+): BetterMentionNode {
+  const mentionNode = new BetterMentionNode(trigger, value, data);
   return $applyNodeReplacement(mentionNode);
 }
 
-export function $isBeautifulMentionNode(
+export function $isBetterMentionNode(
   node: LexicalNode | null | undefined,
-): node is BeautifulMentionNode {
-  return node instanceof BeautifulMentionNode;
+): node is BetterMentionNode {
+  return node instanceof BetterMentionNode;
 }

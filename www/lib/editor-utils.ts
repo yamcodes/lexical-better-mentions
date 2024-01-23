@@ -9,9 +9,9 @@ import {
   LexicalNode,
 } from "lexical";
 import {
-  $isBeautifulMentionNode,
+  $isBetterMentionNode,
   $isZeroWidthNode,
-} from "lexical-beautiful-mentions";
+} from "lexical-better-mentions";
 import { useLayoutEffect, useState } from "react";
 
 export function getDebugTextContent(node: LexicalNode): string {
@@ -22,7 +22,7 @@ export function getDebugTextContent(node: LexicalNode): string {
     for (const child of children) {
       result += getDebugTextContent(child);
     }
-  } else if ($isBeautifulMentionNode(node)) {
+  } else if ($isBetterMentionNode(node)) {
     result += "[" + node.getTextContent() + "]";
   } else if (!$isZeroWidthNode(node)) {
     result += node.getTextContent();

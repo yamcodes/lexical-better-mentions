@@ -1,7 +1,7 @@
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $nodesOfType } from "lexical";
 import { useCallback } from "react";
-import { BeautifulMentionNode } from "./MentionNode";
+import { BetterMentionNode } from "./MentionNode";
 import {
   HasMentions,
   INSERT_MENTION_COMMAND,
@@ -15,10 +15,10 @@ import {
 } from "./mention-commands";
 
 /**
- * Hook that provides access to the BeautifulMentionsPlugin. It allows you to insert,
+ * Hook that provides access to the BetterMentionsPlugin. It allows you to insert,
  * remove and rename mentions from outside the editor.
  */
-export function useBeautifulMentions() {
+export function useBetterMentions() {
   const [editor] = useLexicalComposerContext();
 
   /**
@@ -54,7 +54,7 @@ export function useBeautifulMentions() {
   const hasMentions = useCallback(
     ({ value, trigger }: HasMentions) => {
       return editor.getEditorState().read(() => {
-        const mentions = $nodesOfType(BeautifulMentionNode);
+        const mentions = $nodesOfType(BetterMentionNode);
         if (value) {
           return mentions.some(
             (mention) =>
@@ -81,7 +81,7 @@ export function useBeautifulMentions() {
    */
   const getMentions = useCallback(() => {
     return editor.getEditorState().read(() =>
-      $nodesOfType(BeautifulMentionNode).map((node) => {
+      $nodesOfType(BetterMentionNode).map((node) => {
         const { trigger, value, data } = node.exportJSON();
         return { trigger, value, data };
       }),

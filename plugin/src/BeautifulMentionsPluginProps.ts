@@ -3,7 +3,7 @@ import { ComponentPropsWithRef, ElementType } from "react";
 /**
  * Represents a menu item for a mention.
  */
-export interface BeautifulMentionsMenuItem {
+export interface BetterMentionsMenuItem {
   /**
    * The trigger of the mention. For example: "@".
    */
@@ -20,13 +20,13 @@ export interface BeautifulMentionsMenuItem {
   /**
    * Additional data belonging to the mention.
    */
-  data?: { [key: string]: BeautifulMentionsItemData };
+  data?: { [key: string]: BetterMentionsItemData };
 }
 
 /**
  * Represents a combobox item for a mention.
  */
-export interface BeautifulMentionsComboboxItem {
+export interface BetterMentionsComboboxItem {
   /**
    * The type of the item.
    */
@@ -44,28 +44,28 @@ export interface BeautifulMentionsComboboxItem {
   /**
    * Additional data belonging to the mention.
    */
-  data?: { [key: string]: BeautifulMentionsItemData };
+  data?: { [key: string]: BetterMentionsItemData };
 }
 
-export type BeautifulMentionsItemData = string | boolean | number | null;
+export type BetterMentionsItemData = string | boolean | number | null;
 
 /**
  * The mention without the trigger. For example: "John". Either a string or
  * an object with at least a `value` property. If an object is provided,
  * additional data can be specified. For example: `{ value: "John", id: 1 }`.
  */
-export type BeautifulMentionsItem =
+export type BetterMentionsItem =
   | string
   | {
       value: string;
-      [key: string]: BeautifulMentionsItemData;
+      [key: string]: BetterMentionsItemData;
     };
 
 /**
- * Props for BeautifulMentionsMenu component. This component is used to render
+ * Props for BetterMentionsMenu component. This component is used to render
  * the menu that shows the suggestions for a mention.
  */
-export interface BeautifulMentionsMenuProps extends ComponentPropsWithRef<any> {
+export interface BetterMentionsMenuProps extends ComponentPropsWithRef<any> {
   /**
    * If `true`, the `onSearch` function is currently running.
    */
@@ -73,10 +73,10 @@ export interface BeautifulMentionsMenuProps extends ComponentPropsWithRef<any> {
 }
 
 /**
- * Props for BeautifulMentionsMenuItem component. This component is used to
+ * Props for BetterMentionsMenuItem component. This component is used to
  * render a menu item.
  */
-export type BeautifulMentionsMenuItemProps = Omit<
+export type BetterMentionsMenuItemProps = Omit<
   ComponentPropsWithRef<any>,
   "selected" | "label"
 > & {
@@ -97,14 +97,14 @@ export type BeautifulMentionsMenuItemProps = Omit<
   /**
    * Contains information about the menu item.
    */
-  item: BeautifulMentionsMenuItem;
+  item: BetterMentionsMenuItem;
 };
 
 /**
- * Props for BeautifulMentionsCombobox component. This component is used to
+ * Props for BetterMentionsCombobox component. This component is used to
  * render the combobox that shows the available triggers and mentions.
  */
-export interface BeautifulMentionsComboboxProps
+export interface BetterMentionsComboboxProps
   extends ComponentPropsWithRef<any> {
   /**
    * If `true`, the `onSearch` function is currently running.
@@ -117,10 +117,10 @@ export interface BeautifulMentionsComboboxProps
 }
 
 /**
- * Props for BeautifulMentionsComboboxItem component. This component is used to
+ * Props for BetterMentionsComboboxItem component. This component is used to
  * render a combobox item.
  */
-export type BeautifulMentionsComboboxItemProps = Omit<
+export type BetterMentionsComboboxItemProps = Omit<
   ComponentPropsWithRef<any>,
   "selected" | "option"
 > & {
@@ -131,10 +131,10 @@ export type BeautifulMentionsComboboxItemProps = Omit<
   /**
    * Contains information about the combobox item.
    */
-  item: BeautifulMentionsComboboxItem;
+  item: BetterMentionsComboboxItem;
 };
 
-interface BeautifulMentionsProps {
+interface BetterMentionsProps {
   /**
    * If `truthy`, the user can also create new mentions instead of just
    * selecting one from the mention list.
@@ -179,7 +179,7 @@ interface BeautifulMentionsProps {
   showCurrentMentionsAsSuggestions?: boolean;
 }
 
-type BeautifulMentionsMenuComponentsProps = BeautifulMentionsProps & {
+type BetterMentionsMenuComponentsProps = BetterMentionsProps & {
   /**
    * The class name to apply to the menu component root element.
    */
@@ -188,12 +188,12 @@ type BeautifulMentionsMenuComponentsProps = BeautifulMentionsProps & {
    * The component to use for the menu.
    * @default ul
    */
-  menuComponent?: ElementType<BeautifulMentionsMenuProps>;
+  menuComponent?: ElementType<BetterMentionsMenuProps>;
   /**
    * The component to use for a menu item.
    * @default li
    */
-  menuItemComponent?: ElementType<BeautifulMentionsMenuItemProps>;
+  menuItemComponent?: ElementType<BetterMentionsMenuItemProps>;
   /**
    * If `true`, the mention will be inserted when the user blurs the editor.
    * @default true
@@ -210,7 +210,7 @@ type BeautifulMentionsMenuComponentsProps = BeautifulMentionsProps & {
   /**
    * Callback fired when the user selects a menu item.
    */
-  onMenuItemSelect?: (item: BeautifulMentionsMenuItem) => void;
+  onMenuItemSelect?: (item: BetterMentionsMenuItem) => void;
   combobox?: never;
   comboboxOpen?: never;
   comboboxAnchor?: never;
@@ -224,7 +224,7 @@ type BeautifulMentionsMenuComponentsProps = BeautifulMentionsProps & {
   onComboboxFocusChange?: never;
 };
 
-type BeautifulMentionsMenuCommandComponentProps = BeautifulMentionsProps & {
+type BetterMentionsMenuCommandComponentProps = BetterMentionsProps & {
   /**
    * If `true`, replaces the typeahead menu with a combobox that opens below
    * the editor. The combobox shows the currently available triggers and
@@ -248,19 +248,19 @@ type BeautifulMentionsMenuCommandComponentProps = BeautifulMentionsProps & {
    * The component to use for the combobox.
    * @default ul
    */
-  comboboxComponent?: ElementType<BeautifulMentionsComboboxProps>;
+  comboboxComponent?: ElementType<BetterMentionsComboboxProps>;
   /**
    * The component to use for a combobox item.
    */
-  comboboxItemComponent?: ElementType<BeautifulMentionsComboboxItemProps>;
+  comboboxItemComponent?: ElementType<BetterMentionsComboboxItemProps>;
   /**
    * Additional items to show in the combobox.
    */
-  comboboxAdditionalItems?: Omit<BeautifulMentionsComboboxItem, "itemType">[];
+  comboboxAdditionalItems?: Omit<BetterMentionsComboboxItem, "itemType">[];
   /**
    * Callback fired when the user selects a combobox item.
    */
-  onComboboxItemSelect?: (item: BeautifulMentionsComboboxItem) => void;
+  onComboboxItemSelect?: (item: BetterMentionsComboboxItem) => void;
   /**
    * Callback fired when the combobox requests to be open.
    */
@@ -273,7 +273,7 @@ type BeautifulMentionsMenuCommandComponentProps = BeautifulMentionsProps & {
    * Callback fired when the focus of the currently selected combobox
    * item changes.
    */
-  onComboboxFocusChange?: (item: BeautifulMentionsComboboxItem | null) => void;
+  onComboboxFocusChange?: (item: BetterMentionsComboboxItem | null) => void;
   menuAnchorClassName?: never;
   menuComponent?: never;
   menuItemComponent?: never;
@@ -283,62 +283,60 @@ type BeautifulMentionsMenuCommandComponentProps = BeautifulMentionsProps & {
   onMenuItemSelect?: never;
 };
 
-type BeautifulMentionsPluginWithCompProps =
-  | BeautifulMentionsMenuComponentsProps
-  | BeautifulMentionsMenuCommandComponentProps;
+type BetterMentionsPluginWithCompProps =
+  | BetterMentionsMenuComponentsProps
+  | BetterMentionsMenuCommandComponentProps;
 
-export type BeautifulMentionsSearchProps =
-  BeautifulMentionsPluginWithCompProps & {
-    items?: never;
-    /**
-     * The characters that trigger the mention menu. Needed to tell the plugin
-     * when to call the query function.
-     */
-    triggers: string[];
-    /**
-     * A function that returns a list of suggestions for a given trigger and
-     * query string.
-     */
-    onSearch: (
-      trigger: string,
-      queryString?: string | null,
-    ) => Promise<BeautifulMentionsItem[]>;
-    /**
-     * The delay in milliseconds before the `onSearch` function is called.
-     * @default 250
-     */
-    searchDelay?: number;
-  };
+export type BetterMentionsSearchProps = BetterMentionsPluginWithCompProps & {
+  items?: never;
+  /**
+   * The characters that trigger the mention menu. Needed to tell the plugin
+   * when to call the query function.
+   */
+  triggers: string[];
+  /**
+   * A function that returns a list of suggestions for a given trigger and
+   * query string.
+   */
+  onSearch: (
+    trigger: string,
+    queryString?: string | null,
+  ) => Promise<BetterMentionsItem[]>;
+  /**
+   * The delay in milliseconds before the `onSearch` function is called.
+   * @default 250
+   */
+  searchDelay?: number;
+};
 
-export type BeautifulMentionsItemsProps =
-  BeautifulMentionsPluginWithCompProps & {
-    /**
-     * A map of trigger characters to a list of suggestions.
-     * The keys of the map are the trigger characters that will be used to
-     * open the mention menu. The values are the list of suggestions that
-     * will be shown in the menu.
-     */
-    items: Record<string, BeautifulMentionsItem[]>;
-    /**
-     * Optional list of trigger characters. If provided, the mention menu will
-     * only be opened for the specified triggers. Useful if the trigger is a
-     * regular expression that should not be shown to the user.
-     */
-    triggers?: string[];
-    onSearch?: never;
-    searchDelay?: never;
-  };
+export type BetterMentionsItemsProps = BetterMentionsPluginWithCompProps & {
+  /**
+   * A map of trigger characters to a list of suggestions.
+   * The keys of the map are the trigger characters that will be used to
+   * open the mention menu. The values are the list of suggestions that
+   * will be shown in the menu.
+   */
+  items: Record<string, BetterMentionsItem[]>;
+  /**
+   * Optional list of trigger characters. If provided, the mention menu will
+   * only be opened for the specified triggers. Useful if the trigger is a
+   * regular expression that should not be shown to the user.
+   */
+  triggers?: string[];
+  onSearch?: never;
+  searchDelay?: never;
+};
 
-export type BeautifulMentionsPluginProps =
-  | BeautifulMentionsSearchProps
-  | BeautifulMentionsItemsProps;
+export type BetterMentionsPluginProps =
+  | BetterMentionsSearchProps
+  | BetterMentionsItemsProps;
 
 /**
- * Props for BeautifulMention component. This component is used to render
+ * Props for BetterMention component. This component is used to render
  * a mention in the editor.
  */
-export interface BeautifulMentionComponentProps<
-  T extends { [p: string]: BeautifulMentionsItemData } = {},
+export interface BetterMentionComponentProps<
+  T extends { [p: string]: BetterMentionsItemData } = {},
 > extends Omit<ComponentPropsWithRef<any>, "value" | "data"> {
   /**
    * The trigger of the mention.
@@ -355,5 +353,5 @@ export interface BeautifulMentionComponentProps<
   /**
    * Contains a concatenated string of `trigger` and `value`.
    */
-  "data-beautiful-mention": string;
+  "data-better-mention": string;
 }

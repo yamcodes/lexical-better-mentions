@@ -120,14 +120,14 @@ test.describe("mentions handling", () => {
       },
     );
     const mentionPosition = await page
-      .locator(`[data-beautiful-mention="@Catherine"]`)
+      .locator(`[data-better-mention="@Catherine"]`)
       .boundingBox();
     await expect(
-      page.locator(`[data-beautiful-mention="@Catherine"]`),
+      page.locator(`[data-better-mention="@Catherine"]`),
     ).toHaveAttribute("data-state", "closed");
     await page.mouse.move(mentionPosition.x + 1, mentionPosition.y + 1);
     await expect(
-      page.locator(`[data-beautiful-mention="@Catherine"]`),
+      page.locator(`[data-better-mention="@Catherine"]`),
     ).toHaveAttribute("data-state", "delayed-open");
   });
 
@@ -147,7 +147,7 @@ test.describe("mentions handling", () => {
         customMentionNode: true,
       },
     );
-    await page.click(`[data-beautiful-mention="@Catherine"]`);
+    await page.click(`[data-better-mention="@Catherine"]`);
     const isMac = os.platform() === "darwin";
     const modifier = isMac ? "Meta" : "Control";
     await page.keyboard.press(`${modifier}+KeyC`);

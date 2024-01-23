@@ -26,10 +26,10 @@ import {
 import { useCallback, useEffect, useMemo, useState } from "react";
 import * as ReactDOM from "react-dom";
 import {
-  BeautifulMentionsComboboxItem,
-  BeautifulMentionsItemData,
-  BeautifulMentionsPluginProps,
-} from "./BeautifulMentionsPluginProps";
+  BetterMentionsComboboxItem,
+  BetterMentionsItemData,
+  BetterMentionsPluginProps,
+} from "./BetterMentionsPluginProps";
 import { $splitNodeContainingQuery, MenuOption } from "./Menu";
 import { CAN_USE_DOM, IS_MOBILE } from "./environment";
 import { $insertTriggerAtSelection } from "./mention-commands";
@@ -38,7 +38,7 @@ import { useIsFocused } from "./useIsFocused";
 
 interface ComboboxPluginProps
   extends Pick<
-      BeautifulMentionsPluginProps,
+      BetterMentionsPluginProps,
       | "comboboxOpen"
       | "onComboboxItemSelect"
       | "comboboxAdditionalItems"
@@ -50,7 +50,7 @@ interface ComboboxPluginProps
       | "onComboboxClose"
       | "onComboboxFocusChange"
     >,
-    Required<Pick<BeautifulMentionsPluginProps, "punctuation">> {
+    Required<Pick<BetterMentionsPluginProps, "punctuation">> {
   loading: boolean;
   triggerFn: TriggerFn;
   onSelectOption: (
@@ -65,14 +65,14 @@ interface ComboboxPluginProps
 }
 
 class ComboboxOption extends MenuOption {
-  readonly comboboxItem: BeautifulMentionsComboboxItem;
+  readonly comboboxItem: BetterMentionsComboboxItem;
   readonly menuOption: MenuOption;
 
   constructor(
     public readonly itemType: "trigger" | "value" | "additional",
     value: string,
     displayValue: string,
-    data: { [key: string]: BeautifulMentionsItemData } = {},
+    data: { [key: string]: BetterMentionsItemData } = {},
   ) {
     super(value, displayValue, data);
     this.comboboxItem = {

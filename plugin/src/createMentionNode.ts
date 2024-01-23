@@ -1,31 +1,28 @@
 import { LexicalEditor, LexicalNodeReplacement } from "lexical";
 import { EditorConfig } from "lexical/LexicalEditor";
 import React, { ElementType } from "react";
-import { BeautifulMentionComponentProps } from "./BeautifulMentionsPluginProps";
-import {
-  BeautifulMentionNode,
-  SerializedBeautifulMentionNode,
-} from "./MentionNode";
+import { BetterMentionComponentProps } from "./BetterMentionsPluginProps";
+import { BetterMentionNode, SerializedBetterMentionNode } from "./MentionNode";
 
-export type CustomBeautifulMentionNodeKlass = ReturnType<typeof generateClass>;
+export type CustomBetterMentionNodeKlass = ReturnType<typeof generateClass>;
 
-export let CustomBeautifulMentionNode: CustomBeautifulMentionNodeKlass;
+export let CustomBetterMentionNode: CustomBetterMentionNodeKlass;
 
 /**
- * Instead of using the default `BeautifulMentionNode` class, you can
+ * Instead of using the default `BetterMentionNode` class, you can
  * extend it and use the mention component of your choice.
  */
-export function createBeautifulMentionNode(
-  mentionComponent: ElementType<BeautifulMentionComponentProps>,
-): [CustomBeautifulMentionNodeKlass, LexicalNodeReplacement] {
-  CustomBeautifulMentionNode =
-    CustomBeautifulMentionNode || generateClass(mentionComponent);
+export function createBetterMentionNode(
+  mentionComponent: ElementType<BetterMentionComponentProps>,
+): [CustomBetterMentionNodeKlass, LexicalNodeReplacement] {
+  CustomBetterMentionNode =
+    CustomBetterMentionNode || generateClass(mentionComponent);
   return [
-    CustomBeautifulMentionNode,
+    CustomBetterMentionNode,
     {
-      replace: BeautifulMentionNode,
-      with: (node: BeautifulMentionNode) => {
-        return new CustomBeautifulMentionNode(
+      replace: BetterMentionNode,
+      with: (node: BetterMentionNode) => {
+        return new CustomBetterMentionNode(
           node.getTrigger(),
           node.getValue(),
           node.getData(),
@@ -36,38 +33,38 @@ export function createBeautifulMentionNode(
 }
 
 function generateClass(
-  mentionComponent: ElementType<BeautifulMentionComponentProps>,
+  mentionComponent: ElementType<BetterMentionComponentProps>,
 ) {
-  return class CustomBeautifulMentionNode extends BeautifulMentionNode {
+  return class CustomBetterMentionNode extends BetterMentionNode {
     static getType() {
-      return "custom-beautifulMention";
+      return "custom-betterMention";
     }
-    static clone(node: CustomBeautifulMentionNode) {
-      return new CustomBeautifulMentionNode(
+    static clone(node: CustomBetterMentionNode) {
+      return new CustomBetterMentionNode(
         node.__trigger,
         node.__value,
         node.__data,
         node.__key,
       );
     }
-    static importJSON(serializedNode: SerializedBeautifulMentionNode) {
-      return new CustomBeautifulMentionNode(
+    static importJSON(serializedNode: SerializedBetterMentionNode) {
+      return new CustomBetterMentionNode(
         serializedNode.trigger,
         serializedNode.value,
         serializedNode.data,
       );
     }
-    exportJSON(): SerializedBeautifulMentionNode {
+    exportJSON(): SerializedBetterMentionNode {
       const data = this.__data;
       return {
         trigger: this.__trigger,
         value: this.__value,
         ...(data ? { data } : {}),
-        type: "custom-beautifulMention",
+        type: "custom-betterMention",
         version: 1,
       };
     }
-    component(): ElementType<BeautifulMentionComponentProps> | null {
+    component(): ElementType<BetterMentionComponentProps> | null {
       return mentionComponent;
     }
     decorate(editor: LexicalEditor, config: EditorConfig): React.JSX.Element {

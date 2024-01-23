@@ -1,19 +1,19 @@
-# lexical-beautiful-mentions
+# lexical-better-mentions
 
 [![CI status][github-ci-action-image]][github-ci-action-url]
 [![CodeQL status][github-codeql-analysis-action-image]][github-codeql-analysis-action-url]
 
-[github-ci-action-image]: https://github.com/sodenn/lexical-beautiful-mentions/actions/workflows/ci.yml/badge.svg
-[github-ci-action-url]: https://github.com/sodenn/lexical-beautiful-mentions/actions/workflows/ci.yml
-[github-codeql-analysis-action-image]: https://github.com/sodenn/lexical-beautiful-mentions/actions/workflows/codeql-analysis.yml/badge.svg
-[github-codeql-analysis-action-url]: https://github.com/sodenn/lexical-beautiful-mentions/actions/workflows/codeql-analysis.yml
+[github-ci-action-image]: https://github.com/yamcodes/lexical-better-mentions/actions/workflows/ci.yml/badge.svg
+[github-ci-action-url]: https://github.com/yamcodes/lexical-better-mentions/actions/workflows/ci.yml
+[github-codeql-analysis-action-image]: https://github.com/yamcodes/lexical-better-mentions/actions/workflows/codeql-analysis.yml/badge.svg
+[github-codeql-analysis-action-url]: https://github.com/yamcodes/lexical-better-mentions/actions/workflows/codeql-analysis.yml
 
-[Demo](https://lexical-beautiful-mentions-docs.vercel.app/)
+[Demo](https://lexical-better-mentions-docs.vercel.app/)
 
 A mentions plugin for the [lexical editor](https://lexical.dev/). lexical is an extendable text editor for the web build by Meta. While the lexical playground offers a basic mentions plugin for demo purposes, this plugin is more advanced and offers more features.
 
 - **Customizable triggers**: Use characters, words or regular expressions as triggers for mentions.
-- **Editing mentions outside the editor**: Programmatically insert, delete, or rename mentions via the `useBeautifulMentions` hook.
+- **Editing mentions outside the editor**: Programmatically insert, delete, or rename mentions via the `useBetterMentions` hook.
 - **Customizable mention style**: You can change the look of the mentions via the editor theme to match the style of your application.
 - **Automatic spacing**: The plugin automatically adds spaces around the mentions, which makes it easier for the user to continue typing.
 - **Adding new mentions**: You can allow users to create new mentions that are not in the suggestion list.
@@ -28,20 +28,20 @@ To install the plugin, run the following command:
 
 ```bash
 // with npm
-npm install lexical-beautiful-mentions
+npm install lexical-better-mentions
 
 // with yarn
-yarn add lexical-beautiful-mentions
+yarn add lexical-better-mentions
 ```
 
 You also need to install the `lexical` and `@lexical/react`, which is a peer dependency of this plugin.
 
 ## Usage
 
-Import the `BeautifulMentionsPlugin` plugin:
+Import the `BetterMentionsPlugin` plugin:
 
 ```tsx
-import { BeautifulMentionsPlugin, BeautifulMentionNode } from "lexical-beautiful-mentions";
+import { BetterMentionsPlugin, BetterMentionNode } from "lexical-better-mentions";
 ```
 
 Add the plugin to the lexical editor:
@@ -58,7 +58,7 @@ const mentionItems = {
 
 const editorConfig = {
   // ...
-  nodes: [BeautifulMentionNode] // 👈 register the mention node
+  nodes: [BetterMentionNode] // 👈 register the mention node
 };
 
 return (
@@ -69,7 +69,7 @@ return (
       placeholder={/* ... */}
       errorBoundary={/* ... */}
     />
-    <BeautifulMentionsPlugin
+    <BetterMentionsPlugin
       items={mentionItems}
     />
     {/** ... */}
@@ -79,11 +79,12 @@ return (
 
 ### Customize mention style
 
-<img src="https://raw.githubusercontent.com/sodenn/lexical-beautiful-mentions/main/resources/screenshot1.png" width="200"/><br>
+<img src="https://raw.githubusercontent.com/yamcodes/lexical-better-mentions/main/resources/screenshot1.png" width="200"/><br>
+
 ```tsx
-import { BeautifulMentionsTheme } from "lexical-beautiful-mentions";
+import { BetterMentionsTheme } from "lexical-better-mentions";
 // ...
-const beautifulMentionsTheme: BeautifulMentionsTheme = {
+const betterMentionsTheme: BetterMentionsTheme = {
   // 👇 use the trigger name as the key
   "@": "px-1 mx-px ...",
   // 👇 add the "Focused" suffix to style the focused mention
@@ -98,7 +99,7 @@ const editorConfig = {
   // ...
   theme: {
     // ...
-    beautifulMentions: beautifulMentionsTheme,
+    betterMentions: betterMentionsTheme,
   },
 };
 
@@ -113,25 +114,26 @@ return (
 
 ### Custom mention node and component
 
-If applying styles via the theme is not enough, you can replace the BeautifulMentionNode by using the lexical [Node Overrides](https://lexical.dev/docs/concepts/node-replacement) API. This allows you to change the default behavior of the mention node:
+If applying styles via the theme is not enough, you can replace the BetterMentionNode by using the lexical [Node Overrides](https://lexical.dev/docs/concepts/node-replacement) API. This allows you to change the default behavior of the mention node:
+
 ```tsx
-export class CustomMentionsNode extends BeautifulMentionNode {
+export class CustomMentionsNode extends BetterMentionNode {
   static getType() {
-    return "custom-beautifulMention";
+    return "custom-betterMention";
   }
-  static clone(node: CustomBeautifulMentionNode) {
+  static clone(node: CustomBetterMentionNode) {
     // TODO: implement
   }
-  static importJSON(serializedNode: SerializedBeautifulMentionNode) {
+  static importJSON(serializedNode: SerializedBetterMentionNode) {
     // TODO: implement
   }
-  exportJSON(): SerializedBeautifulMentionNode {
+  exportJSON(): SerializedBetterMentionNode {
     // TODO: implement
   }
-  component(): ElementType<BeautifulMentionComponentProps> | null {
+  component(): ElementType<BetterMentionComponentProps> | null {
     // the component that renders the mention in the editor
     // return null to use the default component
-    // 💡 if you only want to replace the component use the `createBeautifulMentionNode` helper method. See below for more details 👇
+    // 💡 if you only want to replace the component use the `createBetterMentionNode` helper method. See below for more details 👇
   }
   decorate(editor: LexicalEditor, config: EditorConfig): React.JSX.Element {
     // TODO: implement
@@ -143,8 +145,8 @@ const editorConfig = {
     // Don't forget to register your custom node separately!
     CustomMentionsNode,
     {
-      replace: BeautifulMentionNode, 
-      with: (node: BeautifulMentionNode) => {
+      replace: BetterMentionNode,
+      with: (node: BetterMentionNode) => {
         return new CustomMentionsNode(
           node.getTrigger(),
           node.getValue(),
@@ -156,12 +158,12 @@ const editorConfig = {
 }
 ```
 
-The plugin also provides a helper method that overrides the default `BeautifulMentionNode` and uses a customized version with a component of your choice:
+The plugin also provides a helper method that overrides the default `BetterMentionNode` and uses a customized version with a component of your choice:
 
 ```tsx
 const CustomMentionComponent = forwardRef<
   HTMLDivElement,
-  BeautifulMentionComponentProps<MyData>
+  BetterMentionComponentProps<MyData>
 >(({ trigger, value, data: myData, children, ...other }, ref) => {
   return (
     <div {...other} ref={ref} title={trigger + value}>
@@ -171,17 +173,18 @@ const CustomMentionComponent = forwardRef<
 });
 const editorConfig = {
   // ...
-  nodes: [...createBeautifulMentionNode(CustomMentionComponent)],
+  nodes: [...createBetterMentionNode(CustomMentionComponent)],
 };
 ```
 
-###  Custom menu and menu item component
+### Custom menu and menu item component
 
-<img src="https://raw.githubusercontent.com/sodenn/lexical-beautiful-mentions/main/resources/screenshot2.png" width="500"/><br>
+<img src="https://raw.githubusercontent.com/yamcodes/lexical-better-mentions/main/resources/screenshot2.png" width="500"/><br>
+
 ```tsx
 const CustomMenu = forwardRef<
-  HTMLElement, 
-  BeautifulMentionsMenuProps
+  HTMLElement,
+  BetterMentionsMenuProps
 >(({ open, loading, ...props }, ref) => (
   <ul
     className="m-0 mt-6 ..."
@@ -192,7 +195,7 @@ const CustomMenu = forwardRef<
 
 const CustomMenuItem = forwardRef<
   HTMLLIElement,
-  BeautifulMentionsMenuItemProps
+  BetterMentionsMenuItemProps
 >(({ selected, item, ...props }, ref) => (
   <li
     className={`m-0 flex ... ${selected ? "bg-gray-100 ..." : "bg-white ..."}`}
@@ -203,7 +206,7 @@ const CustomMenuItem = forwardRef<
 
 // ...
 
-<BeautifulMentionsPlugin
+<BetterMentionsPlugin
   items={mentionItems}
   menuComponent={CustomMenu}
   menuItemComponent={CustomMenuItem}
@@ -225,37 +228,38 @@ const mentionItems = {
 ```
 
 Serializes to the following lexical nodes:
+
 ```json
- [
-   {
-     "trigger": "@",
-     "value": "Catherine",
-     "data": {
-       "id": "1",
-       "email": "catherine.a@example.com"
-     },
-     "type": "beautifulMention",
-     "version": 1
-   },
-   {
-     "trigger": "@",
-     "value": "Catherine",
-     "data": {
-       "id": "2",
-       "email": "catherine.b@example.com"
-     },
-     "type": "beautifulMention",
-     "version": 1
-   }
- ]
+[
+  {
+    "trigger": "@",
+    "value": "Catherine",
+    "data": {
+      "id": "1",
+      "email": "catherine.a@example.com"
+    },
+    "type": "betterMention",
+    "version": 1
+  },
+  {
+    "trigger": "@",
+    "value": "Catherine",
+    "data": {
+      "id": "2",
+      "email": "catherine.b@example.com"
+    },
+    "type": "betterMention",
+    "version": 1
+  }
+]
 ```
 
-All additional metadata are available as props of the `BeautifulMentionsMenuItem` component:
+All additional metadata are available as props of the `BetterMentionsMenuItem` component:
 
 ```tsx
 const CustomMenuItem = forwardRef<
   HTMLLIElement,
-  BeautifulMentionsMenuItemProps
+  BetterMentionsMenuItemProps
 >(({ item: { data: { id, email }}, ...props }, ref) => (
  <li
   // ...
@@ -267,14 +271,14 @@ const CustomMenuItem = forwardRef<
 
 ```tsx
 import {
-  BeautifulMentionsPlugin,
-  useBeautifulMentions,
-} from "lexical-beautiful-mentions";
+  BetterMentionsPlugin,
+  useBetterMentions,
+} from "lexical-better-mentions";
 
 // ...
 
 function MentionsToolbar() {
-  const { removeMentions, insertMention } = useBeautifulMentions();
+  const { removeMentions, insertMention } = useBetterMentions();
   return (
     <div className="grid gap-2 grid-cols-2">
       <Button onClick={() => removeMentions({ trigger: "#", value: "urgent" })}>
@@ -292,7 +296,7 @@ function MentionsToolbar() {
 return (
   <LexicalComposer>
     {/** ... */}
-    <BeautifulMentionsPlugin
+    <BetterMentionsPlugin
       items={mentionItems}
     />
     <MentionsToolbar />
@@ -304,7 +308,7 @@ return (
 ### Disable creating new mentions
 
 ```tsx
-<BeautifulMentionsPlugin
+<BetterMentionsPlugin
   items={mentionItems}
   creatable={false} // 👈 hide the menu item that allows users to create new mentions
 />
@@ -326,7 +330,7 @@ const queryMentions = async (trigger: string, query: string) => {
 return (
   <LexicalComposer>
     {/** ... */}
-    <BeautifulMentionsPlugin
+    <BetterMentionsPlugin
       triggers={["@", "#"]} // needed to tell the plugin when to call the query function
       onSearch={queryMentions}
     />

@@ -22,15 +22,15 @@ import {
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as ReactDOM from "react-dom";
 import {
-  BeautifulMentionsItemData,
-  BeautifulMentionsMenuItem,
-  BeautifulMentionsPluginProps,
-} from "./BeautifulMentionsPluginProps";
+  BetterMentionsItemData,
+  BetterMentionsMenuItem,
+  BetterMentionsPluginProps,
+} from "./BetterMentionsPluginProps";
 import { ComboboxPlugin } from "./ComboboxPlugin";
 import {
-  $createBeautifulMentionNode,
-  $isBeautifulMentionNode,
-  BeautifulMentionNode,
+  $createBetterMentionNode,
+  $isBetterMentionNode,
+  BetterMentionNode,
 } from "./MentionNode";
 import { MenuOption } from "./Menu";
 import { CAN_USE_DOM, IS_MOBILE } from "./environment";
@@ -60,12 +60,12 @@ import { useIsFocused } from "./useIsFocused";
 import { useMentionLookupService } from "./useMentionLookupService";
 
 class MentionOption extends MenuOption {
-  readonly menuItem: BeautifulMentionsMenuItem;
+  readonly menuItem: BetterMentionsMenuItem;
   constructor(
     public readonly trigger: string,
     value: string,
     displayValue: string,
-    data?: { [key: string]: BeautifulMentionsItemData },
+    data?: { [key: string]: BetterMentionsItemData },
   ) {
     super(value, displayValue, data);
     this.menuItem = {
@@ -136,7 +136,7 @@ export function checkForMentions(
 /**
  * A plugin that adds mentions to the lexical editor.
  */
-export function BeautifulMentionsPlugin(props: BeautifulMentionsPluginProps) {
+export function BetterMentionsPlugin(props: BetterMentionsPluginProps) {
   const {
     items,
     onSearch,
@@ -197,7 +197,7 @@ export function BeautifulMentionsPlugin(props: BeautifulMentionsPluginProps) {
     const readyToAddCurrentMentions = !onSearch || (!loading && query !== null);
     if (readyToAddCurrentMentions && showCurrentMentionsAsSuggestions) {
       editor.getEditorState().read(() => {
-        const mentions = $nodesOfType(BeautifulMentionNode);
+        const mentions = $nodesOfType(BetterMentionNode);
         for (const mention of mentions) {
           const value = mention.getValue();
           const data = mention.getData();
@@ -260,7 +260,7 @@ export function BeautifulMentionsPlugin(props: BeautifulMentionsPluginProps) {
             ? // if the value has spaces, wrap it in the enclosure
               mentionEnclosure + selectedOption.value + mentionEnclosure
             : selectedOption.value;
-        const mentionNode = $createBeautifulMentionNode(
+        const mentionNode = $createBetterMentionNode(
           trigger,
           value,
           selectedOption.data,
@@ -365,7 +365,7 @@ export function BeautifulMentionsPlugin(props: BeautifulMentionsPluginProps) {
     if (textEndIndex === -1) {
       return false;
     }
-    const mentionNode = $createBeautifulMentionNode(
+    const mentionNode = $createBetterMentionNode(
       trigger,
       option.value,
       option.data,
@@ -404,9 +404,9 @@ export function BeautifulMentionsPlugin(props: BeautifulMentionsPluginProps) {
       const selectionInfo = $getSelectionInfo(triggers, punctuation);
       if (selectionInfo) {
         const { node, prevNode, offset } = selectionInfo;
-        const mentionNode = $isBeautifulMentionNode(node)
+        const mentionNode = $isBetterMentionNode(node)
           ? node
-          : $isBeautifulMentionNode(prevNode) && offset === 0
+          : $isBetterMentionNode(prevNode) && offset === 0
             ? prevNode
             : null;
         if (mentionNode) {
@@ -439,19 +439,11 @@ export function BeautifulMentionsPlugin(props: BeautifulMentionsPluginProps) {
         cursorAtEndOfNode,
       } = selectionInfo;
       // [Mention][|][Text]
-      if (
-        isTextNode &&
-        cursorAtStartOfNode &&
-        $isBeautifulMentionNode(prevNode)
-      ) {
+      if (isTextNode && cursorAtStartOfNode && $isBetterMentionNode(prevNode)) {
         node.insertBefore($createTextNode(" "));
       }
       // [Text][|][Mention]
-      if (
-        isTextNode &&
-        cursorAtEndOfNode &&
-        $isBeautifulMentionNode(nextNode)
-      ) {
+      if (isTextNode && cursorAtEndOfNode && $isBetterMentionNode(nextNode)) {
         node.insertAfter($createTextNode(" "));
       }
       // [Text][|][Word]
@@ -463,7 +455,7 @@ export function BeautifulMentionsPlugin(props: BeautifulMentionsPluginProps) {
         node.setTextContent(content);
       }
       // [Mention][|]
-      if ($isBeautifulMentionNode(node) && nextNode === null) {
+      if ($isBetterMentionNode(node) && nextNode === null) {
         node.insertAfter($createTextNode(" "));
       }
     },

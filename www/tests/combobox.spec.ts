@@ -295,7 +295,7 @@ test.describe("Combobox", () => {
     await utils.editor.press("ArrowDown");
     await expect(utils.combobox).toHaveAttribute("aria-activedescendant", "@");
     await page
-      .getByRole("heading", { name: "lexical-beautiful-mentions" })
+      .getByRole("heading", { name: "lexical-better-mentions" })
       .click();
     await utils.editor.focus();
     await expect(utils.combobox).toHaveAttribute("aria-activedescendant", "");
@@ -343,7 +343,7 @@ test.describe("Combobox", () => {
     let open = await utils.isMenuOrComboboxOpen();
     expect(open).toBe(true);
     await page
-      .getByRole("heading", { name: "lexical-beautiful-mentions" })
+      .getByRole("heading", { name: "lexical-better-mentions" })
       .click();
     open = await utils.isMenuOrComboboxOpen();
     expect(open).toBe(false);
@@ -391,7 +391,7 @@ test.describe("Combobox", () => {
     expect(open).toBe(false);
     // position the mouse outside the combobox
     await page
-      .getByRole("heading", { name: "lexical-beautiful-mentions" })
+      .getByRole("heading", { name: "lexical-better-mentions" })
       .click();
     await utils.editor.blur();
     await utils.sleep(200);
