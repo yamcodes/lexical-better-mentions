@@ -628,7 +628,7 @@ export function ComboboxPlugin(props: ComboboxPluginProps) {
 
   return ReactDOM.createPortal(
     <ComboboxComponent
-      $loading={loading}
+      loading={loading ? true : undefined}
       itemType={itemType}
       role="menu"
       aria-activedescendant={

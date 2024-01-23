@@ -648,7 +648,7 @@ export function BetterMentionsPlugin(props: BetterMentionsPluginProps) {
         return anchorElementRef.current && (options.length > 0 || loading)
           ? ReactDOM.createPortal(
               <MenuComponent
-                $loading={loading}
+                loading={loading ? true : undefined}
                 role="menu"
                 aria-label="Choose a mention"
                 aria-hidden={!open}
