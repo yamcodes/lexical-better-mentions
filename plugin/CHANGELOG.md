@@ -1,5 +1,11 @@
 # lexical-better-mentions
 
+## 0.1.31
+
+### Patch Changes
+
+- a443f30: Fix DOM issues with non-boolean props to DOM elements
+
 ## 0.1.30
 
 ### Patch Changes
