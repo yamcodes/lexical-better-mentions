@@ -90,11 +90,6 @@ export type BetterMentionsMenuItemProps = Omit<
    */
   label: string;
   /**
-   * The value of the menu item.
-   * @deprecated Use `item` instead.
-   */
-  itemValue: string;
-  /**
    * Contains information about the menu item.
    */
   item: BetterMentionsMenuItem;

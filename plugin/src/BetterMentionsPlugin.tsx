@@ -648,7 +648,7 @@ export function BetterMentionsPlugin(props: BetterMentionsPluginProps) {
         return anchorElementRef.current && (options.length > 0 || loading)
           ? ReactDOM.createPortal(
               <MenuComponent
-                loading={loading}
+                $loading={loading}
                 role="menu"
                 aria-label="Choose a mention"
                 aria-hidden={!open}
@@ -670,7 +670,6 @@ export function BetterMentionsPlugin(props: BetterMentionsPluginProps) {
                     aria-selected={!IS_MOBILE && selectedIndex === i}
                     aria-label={`Choose ${option.value}`}
                     item={option.menuItem}
-                    itemValue={option.value}
                     label={option.displayValue}
                     {...option.data}
                     onClick={() => {

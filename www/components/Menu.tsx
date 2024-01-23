@@ -39,7 +39,7 @@ Menu.displayName = "Menu";
  * MenuItem component for the BetterMentionsPlugin.
  */
 export const MenuItem = forwardRef<HTMLLIElement, BetterMentionsMenuItemProps>(
-  ({ selected, item, itemValue, ...props }, ref) => (
+  ({ selected, item, ...props }, ref) => (
     <li
       ref={ref}
       className={cn(
