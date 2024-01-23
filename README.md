@@ -1,14 +1,15 @@
 # lexical-better-mentions
 
-[![CI status][github-ci-action-image]][github-ci-action-url]
-[![CodeQL status][github-codeql-analysis-action-image]][github-codeql-analysis-action-url]
+> [!NOTE]
+> **This is fork of [sodenn/lexical-beautiful-mentions](https://github.com/sodenn/lexical-beautiful-mentions) with 2 additions:**
+>
+> 1. The [use LexicalTypeaheadMenuPlugin from `@lexical/react` PR](https://github.com/sodenn/lexical-beautiful-mentions/pull/345)
+> 2. Making it compatible with React 17 (which is possible by the above change)
+>
+> The rest of this documentation is provided by the original author of the `*-beautiful-*` package, including the demo link.
+> I simply adapted the rest of the instructions to the new package name, in order to publish it to npm.
 
-[github-ci-action-image]: https://github.com/yamcodes/lexical-better-mentions/actions/workflows/ci.yml/badge.svg
-[github-ci-action-url]: https://github.com/yamcodes/lexical-better-mentions/actions/workflows/ci.yml
-[github-codeql-analysis-action-image]: https://github.com/yamcodes/lexical-better-mentions/actions/workflows/codeql-analysis.yml/badge.svg
-[github-codeql-analysis-action-url]: https://github.com/yamcodes/lexical-better-mentions/actions/workflows/codeql-analysis.yml
-
-[Demo](https://lexical-better-mentions-docs.vercel.app/)
+[Demo](https://lexical-beautiful-mentions-docs.vercel.app/)
 
 A mentions plugin for the [lexical editor](https://lexical.dev/). lexical is an extendable text editor for the web build by Meta. While the lexical playground offers a basic mentions plugin for demo purposes, this plugin is more advanced and offers more features.
 
