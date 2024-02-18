@@ -649,7 +649,7 @@ export function BetterMentionsPlugin(props: BetterMentionsPluginProps) {
           ? ReactDOM.createPortal(
               <MenuComponent
                 loading={loading ? true : undefined}
-                role="menu"
+                anchorEl={anchorElementRef.current}
                 aria-label="Choose a mention"
                 aria-hidden={!open}
                 aria-activedescendant={

@@ -70,6 +70,10 @@ export interface BetterMentionsMenuProps extends ComponentPropsWithRef<any> {
    * If `true`, the `onSearch` function is currently running.
    */
   loading?: boolean;
+  /**
+   * The HTML element that the menu will be attached to.
+   */
+  anchorEl?: HTMLElement;
 }
 
 /**
