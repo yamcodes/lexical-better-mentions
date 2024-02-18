@@ -1,5 +1,11 @@
 # lexical-better-mentions
 
+## 0.2.0
+
+### Minor Changes
+
+- a0b02a4: feat: pass `anchorEl`
+
 ## 0.1.31
 
 ### Patch Changes
