@@ -1,5 +1,9 @@
 # lexical-better-mentions
 
+> [!IMPORTANT]
+> This project is archived. All of its goals have been already addressed in the root library.
+> **Please use [lexical-beautiful-mentions](https://github.com/sodenn/lexical-beautiful-mentions) instead.**
+
 > [!NOTE]
 > **This is fork of [sodenn/lexical-beautiful-mentions](https://github.com/sodenn/lexical-beautiful-mentions) with 2 additions:**
 >
